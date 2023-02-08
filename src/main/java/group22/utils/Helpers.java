@@ -41,7 +41,7 @@ public class Helpers {
         String sha=payload.get("after").toString();
         String temp="{sha}";
         String statusURL=tempStatusURL.replace(temp,sha);
-        //System.out.println(statusURL);
+        System.out.println(statusURL);
         return statusURL;
     }
 }
