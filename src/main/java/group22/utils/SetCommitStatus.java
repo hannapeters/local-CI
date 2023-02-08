@@ -36,7 +36,7 @@ public class SetCommitStatus {
             
             CloseableHttpResponse response = httpClient.execute(httpPost);
             //get response code to see if the commit status was set successfully
-            //code 200 means successful
+            //code 200 means successfull
             int code = response.getStatusLine().getStatusCode();
             System.out.println(code);
             httpClient.close();
