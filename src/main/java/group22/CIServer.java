@@ -51,9 +51,9 @@ public class CIServer extends AbstractHandler
         CloneRepository.cloneRepository(cloneUrl, "./repo");
         // //2nd compile the code
 
-        // //3rd set commit statu sv
-        // String statusUrl=Helpers.getStatusUrl(jsonObject);
-        // SetCommitStatus.setCommitStatus(statusUrl,"success");
+        // // //3rd set commit statu sv
+        String statusUrl=Helpers.getStatusUrl(jsonObject);
+        SetCommitStatus.setCommitStatus(statusUrl,"success");
 
         response.getWriter().println("CI job done");
 

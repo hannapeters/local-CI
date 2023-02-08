@@ -7,7 +7,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.simple.JSONObject;
 import org.apache.http.NameValuePair;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.HttpResponse;
+
+//import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
 
@@ -18,37 +24,45 @@ public class SetCommitStatus {
     private static String token="";
     public static void setCommitStatus(String statusUrl, String state) {     
         try {
-            //open and send a http post request to the given url
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost("statusUrl");
-            //procedure to authenticate user with server and set some fields
-            //in the header
-            //this is my local token
-            //httpPost.setHeader("Authorization", "token "+ "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");
-            httpPost.setHeader("Content-type", "application/json");
-            // //set value in header
-            httpPost.setHeader("Accept", "application/vnd.github+json");
-            //set rest of parameters in response
-            // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
-            // params.add(new BasicNameValuePair("state", state));
-            // params.add(new BasicNameValuePair("description", "Build OK"));
-            // params.add(new BasicNameValuePair("context", "CI-server"));
-            // httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
-            
-            CloseableHttpResponse response = httpClient.execute(httpPost);
-            //get response code to see if the commit status was set successfully
-            //code 200 means successfull
-            //int code = response.getStatusLine().getStatusCode();
-            //System.out.println(code);
-            httpClient.close();
-            response.close();
-            // if(code==200){
-            //     return "successful";
-            // }
-            // else {
-            //     return "unsuccessful "+code;
-            // }
+            // //open and send a http post request to the given url
+            JSONObject request=new JSONObject();
+            request.put("context", "CI-server group 22");
+            request.put("state", state);
+            HttpResponse<JsonNode> response= Unirest.post(statusUrl)
+            .header("Content-Type","application/json")
+            .body(request)
+            .asJson();
 
+            System.out.println(response.getBody().getObject().getString("state"));
+            //CloseableHttpClient httpClient = HttpClients.createDefault();
+            // HttpPost httpPost = new HttpPost("statusUrl");
+            // //procedure to authenticate user with server and set some fields
+            // //in the header
+            // //this is my local token
+            // //httpPost.setHeader("Authorization", "token "+ "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");
+            // httpPost.setHeader("Content-type", "application/json");
+            // // //set value in header
+            // httpPost.setHeader("Accept", "application/vnd.github+json");
+            // //set rest of parameters in response
+            // // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
+            // // params.add(new BasicNameValuePair("state", state));
+            // // params.add(new BasicNameValuePair("description", "Build OK"));
+            // // params.add(new BasicNameValuePair("context", "CI-server"));
+            // // httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+            
+            // CloseableHttpResponse response = httpClient.execute(httpPost);
+            // //get response code to see if the commit status was set successfully
+            // //code 200 means successfull
+            // int code = response.getStatusLine().getStatusCode();
+            // System.out.println(code);
+            // httpClient.close();
+            // response.close();
+            // // if(code==200){
+            // //     return "successful";
+            // // }
+            // // else {
+            // //     return "unsuccessful "+code;
+            // // }
 
         } catch (Exception e) {
             System.out.println( "Error setting commit status " + e.getMessage());
