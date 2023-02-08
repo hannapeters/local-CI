@@ -20,13 +20,13 @@ public class SetCommitStatus {
         try {
             //open and send a http post request to the given url
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost(statusUrl);
+            HttpPost httpPost = new HttpPost("statusUrl");
             //procedure to authenticate user with server and set some fields
             //in the header
             //this is my local token
             //httpPost.setHeader("Authorization", "token "+ "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");
             httpPost.setHeader("Content-type", "application/json");
-            //set value in header
+            // //set value in header
             httpPost.setHeader("Accept", "application/vnd.github+json");
             //set rest of parameters in response
             // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
