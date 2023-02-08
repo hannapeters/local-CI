@@ -28,6 +28,8 @@ public class SetCommitStatus {
             JSONObject request=new JSONObject();
             request.put("context", "CI-server group 22");
             request.put("state", state);
+
+            //Unirest.setTimeouts(0, 0);
             HttpResponse<JsonNode> response= Unirest.post(statusUrl)
             .header("Content-Type","application/json")
             .body(request)
