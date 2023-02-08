@@ -4,6 +4,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.NameValuePair;
@@ -23,15 +24,15 @@ public class SetCommitStatus {
             //procedure to authenticate user with server and set some fields
             //in the header
             //this is my local token
-            httpPost.setHeader("Authorization", "token "+ "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");
+            //httpPost.setHeader("Authorization", "token "+ "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");
             httpPost.setHeader("Content-type", "application/json");
             //set value in header
             httpPost.setHeader("Accept", "application/vnd.github+json");
             //set rest of parameters in response
             ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("state", state));
-            params.add(new BasicNameValuePair("message", state));
-            params.add(new BasicNameValuePair("context", state));
+            params.add(new BasicNameValuePair("description", "Build OK"));
+            params.add(new BasicNameValuePair("context", "CI-server"));
             httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             
             CloseableHttpResponse response = httpClient.execute(httpPost);

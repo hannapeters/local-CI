@@ -47,11 +47,11 @@ public class CIServer extends AbstractHandler
             System.out.println(e.getMessage());
         }
 
-        String cloneUrl = Helpers.getCloneUrl(jsonObject);
-        CloneRepository.cloneRepository(cloneUrl, "./repo");
-        //2nd compile the cod
+         String cloneUrl = Helpers.getCloneUrl(jsonObject);
+         CloneRepository.cloneRepository(cloneUrl, "./repo");
+        // //2nd compile the cod
 
-        //3rd set commit status
+        // //3rd set commit status
         String statusUrl=Helpers.getStatusUrl(jsonObject);
         SetCommitStatus.setCommitStatus(statusUrl,"success");
 
