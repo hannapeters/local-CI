@@ -52,10 +52,10 @@ public class CIServer extends AbstractHandler
         //2nd compile the code
 
         //3rd set commit status
-        String statusUrl=Helpers.getStatusUrl(jsonObject);
-        SetCommitStatus.setCommitStatus(statusUrl,"success");
+        // String statusUrl=Helpers.getStatusUrl(jsonObject);
+        // SetCommitStatus.setCommitStatus(statusUrl,"success");
 
-        response.getWriter().println("CI job done again");
+        response.getWriter().println("CI job done");
 
     }
  
