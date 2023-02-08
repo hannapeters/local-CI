@@ -23,8 +23,8 @@ public class SetCommitStatus {
             //procedure to authenticate user with server and set some fields
             //in the header
             //this is my local token
-            httpPost.setHeader("Authorization", "token "+ "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");
-            httpPost.setHeader("Content-type", "application/json");
+            // httpPost.setHeader("Authorization", "token "+ "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");
+            // httpPost.setHeader("Content-type", "application/json");
             //set value in header
             httpPost.setHeader("Accept", "application/vnd.github+json");
             //set rest of parameters in response
