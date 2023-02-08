@@ -53,7 +53,7 @@ public class CIServer extends AbstractHandler
 
         //3rd set commit status
         String statusUrl=Helpers.getStatusUrl(jsonObject);
-        String commit_status=SetCommitStatus.setCommitStatus(statusUrl,"success");
+        SetCommitStatus.setCommitStatus(statusUrl,"success");
 
         response.getWriter().println("CI job done again");
 
