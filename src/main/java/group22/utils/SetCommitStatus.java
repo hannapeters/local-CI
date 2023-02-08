@@ -44,7 +44,7 @@ public class SetCommitStatus {
             // //httpPost.setHeader("Authorization", "token "+ "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");
             httpPost.setHeader("Content-type", "application/json");
             // // //set value in header
-            httpPost.setHeader("Accept", "application/vnd.github+json");
+            //httpPost.setHeader("Accept", "application/vnd.github+json");
             // //set rest of parameters in response
             // // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
             // // params.add(new BasicNameValuePair("state", state));
