@@ -36,11 +36,12 @@ public class Helpers {
         return ((JSONObject) payload.get("repository")).get("clone_url").toString();
     }
 
-    public static String getStatusUrl(JSONObject payload){
+    public static String getStatusUrl(JSONObject payload) {
         String tempStatusURL=((JSONObject) payload.get("repository")).get("statuses_url").toString();
-        String sha=((JSONObject) payload.get("after")).toString();
+        String sha=payload.get("after").toString();
         String temp="{sha}";
         String statusURL=tempStatusURL.replace(temp,sha);
+        System.out.println(statusURL);
         return statusURL;
     }
 }
