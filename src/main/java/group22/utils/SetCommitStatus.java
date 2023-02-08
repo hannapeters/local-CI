@@ -22,16 +22,17 @@ public class SetCommitStatus {
             HttpPost httpPost = new HttpPost(statusUrl);
             //procedure to authenticate user with server and set some fields
             //in the header
-            // httpPost.setHeader("Authorization", "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");
-            // httpPost.setHeader("Content-type", "application/json");
+            //this is my local token
+            httpPost.setHeader("Authorization", "token "+ "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");
+            httpPost.setHeader("Content-type", "application/json");
             //set value in header
             httpPost.setHeader("Accept", "application/vnd.github+json");
             //set rest of parameters in response
-            // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
-            // params.add(new BasicNameValuePair("state", state));
-            // params.add(new BasicNameValuePair("message", state));
-            // params.add(new BasicNameValuePair("context", state));
-            // httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
+            ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("state", state));
+            params.add(new BasicNameValuePair("message", state));
+            params.add(new BasicNameValuePair("context", state));
+            httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             
             CloseableHttpResponse response = httpClient.execute(httpPost);
             //get response code to see if the commit status was set successfully
