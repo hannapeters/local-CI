@@ -25,26 +25,26 @@ public class SetCommitStatus {
     public static void setCommitStatus(String statusUrl, String state) {     
         try {
             // //open and send a http post request to the given url
-            JSONObject request=new JSONObject();
-            request.put("context", "CI-server group 22");
-            request.put("state", state);
+            // JSONObject request=new JSONObject();
+            // request.put("context", "CI-server group 22");
+            // request.put("state", state);
 
-            //Unirest.setTimeouts(0, 0);
-            HttpResponse<JsonNode> response= Unirest.post(statusUrl)
-            .header("Content-Type","application/json")
-            .body(request)
-            .asJson();
+            // //Unirest.setTimeouts(0, 0);
+            // HttpResponse<JsonNode> response= Unirest.post(statusUrl)
+            // .header("Content-Type","application/json")
+            // .body(request)
+            // .asJson();
+            //System.out.println(response.getBody().getObject().getString("state"));
 
-            System.out.println(response.getBody().getObject().getString("state"));
-            //CloseableHttpClient httpClient = HttpClients.createDefault();
-            // HttpPost httpPost = new HttpPost("statusUrl");
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpPost httpPost = new HttpPost("statusUrl");
             // //procedure to authenticate user with server and set some fields
             // //in the header
             // //this is my local token
             // //httpPost.setHeader("Authorization", "token "+ "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");
-            // httpPost.setHeader("Content-type", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
             // // //set value in header
-            // httpPost.setHeader("Accept", "application/vnd.github+json");
+            httpPost.setHeader("Accept", "application/vnd.github+json");
             // //set rest of parameters in response
             // // ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
             // // params.add(new BasicNameValuePair("state", state));
@@ -52,13 +52,13 @@ public class SetCommitStatus {
             // // params.add(new BasicNameValuePair("context", "CI-server"));
             // // httpPost.setEntity(new UrlEncodedFormEntity(params,"UTF-8"));
             
-            // CloseableHttpResponse response = httpClient.execute(httpPost);
+            CloseableHttpResponse response = httpClient.execute(httpPost);
             // //get response code to see if the commit status was set successfully
             // //code 200 means successfull
-            // int code = response.getStatusLine().getStatusCode();
-            // System.out.println(code);
-            // httpClient.close();
-            // response.close();
+            int code = response.getStatusLine().getStatusCode();
+            System.out.println(code);
+            httpClient.close();
+            response.close();
             // // if(code==200){
             // //     return "successful";
             // // }
